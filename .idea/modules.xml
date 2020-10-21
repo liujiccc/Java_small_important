@@ -2,6 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/Automatically_skip/Automatically_skip.iml" filepath="$PROJECT_DIR$/Automatically_skip/Automatically_skip.iml" />
+      <module fileurl="file://$PROJECT_DIR$/DynamicTable/DynamicTable.iml" filepath="$PROJECT_DIR$/DynamicTable/DynamicTable.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java_smallimportant.iml" filepath="$PROJECT_DIR$/Java_smallimportant.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lunbotu/Lunbotu.iml" filepath="$PROJECT_DIR$/Lunbotu/Lunbotu.iml" />
     </modules>

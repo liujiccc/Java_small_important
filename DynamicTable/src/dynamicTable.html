@@ -17,7 +17,16 @@
         div{
             text-align: center;
             margin: 50px;
+
         }
+
+        .out1{
+            background-color: white;
+        }
+        .over1{
+            background-color: pink;
+        }
+
     </style>
 </head>
 <body>
@@ -32,6 +41,7 @@
 <table>
     <caption>学生信息表</caption>
     <tr>
+        <th><input type="checkbox" name="cb" id="firstCb"></th>
         <th>编号</th>
         <th>姓名</th>
         <th>性别</th>
@@ -39,6 +49,7 @@
     </tr>
 
     <tr>
+        <th><input type="checkbox" name="cb" ></th>
         <th>1</th>
         <th>帅哥</th>
         <th>男</th>
@@ -46,6 +57,7 @@
     </tr>
 
     <tr>
+        <th><input type="checkbox" name="cb"></th>
         <th>2</th>
         <th>美女</th>
         <th>女</th>
@@ -53,6 +65,7 @@
     </tr>
 
     <tr>
+        <th><input type="checkbox" name="cb"></th>
         <td>3</td>
         <td>岳不群</td>
         <td>男</td>
@@ -60,6 +73,11 @@
     </tr>
 </table>
 
+<div>
+    <input type="button" id="selectAll" value="全选">
+    <input type="button" id="unSelectAll" value="全不选">
+    <input type="button" id="selectRev" value="反选">
+</div>
 <script>
     /*
         分析：
@@ -82,28 +100,99 @@
     //使用innerHTML添加
     //.value是获取输入框的内容
     document.getElementById("btn_add").onclick=function () {
+        // 复选框直接+了，不用对象了
         var id = document.getElementById("id").value;
         var name = document.getElementById("name").value;
         var gender_value = document.getElementById("gender").value;
         //table[0]应该是table行的意思
         var table = document.getElementsByTagName("table")[0];
         table.innerHTML+="<tr>\n" +
+            "        <td> <input type=\"checkbox\" name=\"cb\" ></td>\n" +
             "        <td>"+id+"</td>\n" +
             "        <td>"+name+"</td>\n" +
             "        <td>"+gender_value+"</td>\n" +
             "        <td><a href=\"javascript:void(0);\" onclick=\"delTr(this);\" >删除</a></td>\n" +
             "    </tr>"
     }
-    
 
     //删除方法
     function delTr(obj) {
-
         var table=obj.parentNode.parentNode.parentNode;
         var tr=obj.parentNode.parentNode
         table.removeChild(tr)
     }
 
+    // 添加全选反选。。。
+    /*
+       分析：
+           1.全选：
+               * 获取所有的checkbox
+               * 遍历cb，设置每一个cb的状态为选中  checked
+
+      */
+    //2.给全选按钮绑定单击事件
+    document.getElementById("selectAll").onclick=function () {
+        //全选
+        //1.获取所有的checkbox
+        //cb是上面定义的标签里面的name
+        var cbs = document.getElementsByName("cb");
+        for (var i = 0; i < cbs.length; i++) {
+            //3.设置每一个cb的状态为选中  checked
+            cbs[i].checked = true;
+        }
+    }
+
+    document.getElementById("unSelectAll").onclick=function () {
+        //全不选
+        //1.获取所有的checkbox
+        //cb是上面定义的标签里面的name
+        var cbs = document.getElementsByName("cb");
+        for (var i = 0; i < cbs.length; i++) {
+            //3.设置每一个cb的状态为选中  checked
+            cbs[i].checked = false;
+        }
+    }
+
+
+    document.getElementById("selectRev").onclick=function () {
+        //反选
+        //1.获取所有的checkbox
+        //cb是上面定义的标签里面的name
+        var cbs = document.getElementsByName("cb");
+        for(var i=0;i<cbs.length;i++)
+        {
+            //3.设置每一个cb的状态为选中  checked
+            cbs[i].checked=!cbs[i].checked;
+        }
+    }
+
+    document.getElementById("firstCb").onclick=function () {
+        var cbs = document.getElementsByName("cb");
+        //获取第一个cb
+        //2.遍历
+        for (var i=0;i<cbs.length;i++)
+        {
+            cbs[i].checked=this.checked;
+        }
+    }
+
+
+    //给所有tr绑定鼠标移到元素之上和移出元素事件
+    //在某行移动会有颜色变化
+    var trs = document.getElementsByTagName("tr");
+    //2.遍历
+    for(var i=0;i<trs.length;i++)
+    {
+        //移到元素之上,可以直接指定它的类名
+        trs[i].onmouseover=function () {
+            this.className="over1"
+        }
+
+        //移出元素
+        trs[i].onmouseout=function () {
+            this.className="out1"
+        }
+    }
 </script>
 </body>
 </html>
