@@ -6,6 +6,7 @@
       <module fileurl="file://$PROJECT_DIR$/DynamicTable/DynamicTable.iml" filepath="$PROJECT_DIR$/DynamicTable/DynamicTable.iml" />
       <module fileurl="file://$PROJECT_DIR$/Java_smallimportant.iml" filepath="$PROJECT_DIR$/Java_smallimportant.iml" />
       <module fileurl="file://$PROJECT_DIR$/Lunbotu/Lunbotu.iml" filepath="$PROJECT_DIR$/Lunbotu/Lunbotu.iml" />
+      <module fileurl="file://$PROJECT_DIR$/NavigationAndPage/NavigationAndPage.iml" filepath="$PROJECT_DIR$/NavigationAndPage/NavigationAndPage.iml" />
     </modules>
   </component>
 </project>
