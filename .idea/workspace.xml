@@ -7,15 +7,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="13e99a12-b82f-4d7a-b148-aab6e24bb55c" name="Default" comment="servlet文件下载以及解决中文乱码问题">
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Login_smallProj_war_exploded.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/libs.xml" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/download_file/src/cn/itcast/servlet/Servlet_download.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/download_file/src/cn/itcast/util/DownLoadUtils.java" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/download_file/web/download.html" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/download_file/web/img/1.avi" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/download_file/web/img/2.jpg" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/download_file/web/img/九尾.jpg" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="$PROJECT_DIR$/out/" />
@@ -196,6 +187,11 @@
             <path>
               <item name="Java_smallimportant" type="b2602c69:ProjectViewProjectNode" />
               <item name="Java_smallimportant" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Java_smallimportant" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Java_smallimportant" type="462c0819:PsiDirectoryNode" />
+              <item name="download_file" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -476,7 +472,7 @@
       <workItem from="1606097767621" duration="6625000" />
       <workItem from="1606113991357" duration="1564000" />
       <workItem from="1606185145684" duration="2154000" />
-      <workItem from="1606199905371" duration="1426000" />
+      <workItem from="1606199905371" duration="1612000" />
     </task>
     <task id="LOCAL-00001" summary="&quot;添加了全选，还有鼠标放上去颜色变化，复选框的添加直接在table.innerHTML就行&quot;">
       <created>1603283530714</created>
@@ -513,15 +509,21 @@
       <option name="project" value="LOCAL" />
       <updated>1606115189764</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="servlet文件下载以及解决中文乱码问题">
+      <created>1606201345189</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1606201345190</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="42198000" />
+    <option name="totallyTimeSpent" value="42384000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-9" y="-9" width="1938" height="1048" extended-state="6" />
-    <editor active="true" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -544,7 +546,7 @@
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3922652" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Spring" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27135417" sideWeight="0.8649094" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27135417" sideWeight="0.8649094" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Web" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27135417" sideWeight="0.1350906" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Theme Preview" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
