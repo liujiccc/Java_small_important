@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>发送请求什么图片给servlet</title>
+</head>
+<body>
+
+<!--浏览器请求图片，要加虚拟目录-->
+<a href="/bbb/img/九尾.jpg">图片1</a><!--这里点图片直接显示在页面上，不是我们的需求（英文html会解释图片），所以我们得使用下面的?-->
+<a href="/bbb/img/1.avi">视频1</a><!--由于视屏这里html不会解释，所以会下载-->
+
+<br>
+<!--发送给servlet，浏览器请求的，所以得加虚拟目录-->
+
+<a href="/bbb/Servlet_download?filename=九尾.jpg">图片2</a>
+
+<a href="/bbb/Servlet_download?filename=1.avi">视频2</a>
+</body>
+</html>
