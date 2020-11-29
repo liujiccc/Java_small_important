@@ -22,7 +22,7 @@ public class UserDao {
     /**
      * 登录方法
      * @param loginUser 只有用户名和密码
-     * @return user包含用户全部数据,没有查询到，返回null给loginservlet进行逻辑处理
+     * @return user包含用户全部数据,没有查询到，返回null给loginservlet进行逻辑处理，是这样的
      */
     public User login(User loginUser){
         try {
