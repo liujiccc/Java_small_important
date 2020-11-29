@@ -16,4 +16,18 @@ import java.util.List;
 public interface UserDao {
     public List<User> findAll();
     User findUserByUsernameAndPassword(String username,String password);
+
+    //添加联系人
+    void add(User user);
+
+    //删除一行
+    void delete(int id);
+
+    //修改一行时，回显要用的
+    User findById(int id);
+
+
+    //修改一行时，提交时用
+    void update(User user);
+
 }

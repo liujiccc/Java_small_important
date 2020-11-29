@@ -27,4 +27,22 @@ public interface UserService {
      */
     User login(User user);
 
+    /**
+     * @description:  添加联系人
+     * @param: * @param: null
+     * @return:
+     * @author QLBF
+     * @date: 2020/11/29 17:05
+     */
+    void addUser(User user);
+
+
+    //删除一行
+    void deleteUser(String id);
+
+    //修改一行时，回显要用的
+    User findUserById(String id);
+
+    //修改一行时，提交时用
+    void updateUser(User user);
 }

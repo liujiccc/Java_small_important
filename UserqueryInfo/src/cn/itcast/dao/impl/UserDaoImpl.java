@@ -51,4 +51,36 @@ public class UserDaoImpl implements UserDao{
             return null;
         }
     }
+
+    @Override
+    public void add(User user) {
+        //添加联系人
+        //定义sql，id，密码和用户名先设置为null
+        String sql="insert into user values(null,?,?,?,?,?,?,null,null)";
+        //执行sql，下面的get是对应实体类的
+        template.update(sql,user.getName(),user.getGender(),user.getAge(),user.getAddress(),user.getQq(),user.getEmail());
+
+    }
+
+    @Override
+    public void delete(int id) {
+        //删除一行
+        String sql="delete from user where id=?";
+        template.update(sql,id);
+    }
+
+    @Override
+    public User findById(int id) {
+        //修改一行时，回显要用的
+        String sql="select * from user where id=?";
+        User user = template.queryForObject(sql, new BeanPropertyRowMapper<User>(User.class), id);
+        return user;
+    }
+
+    @Override
+    public void update(User user) {
+        //修改一行时，提交时用
+        String sql="update user set name=?,gender=?,age=?,address=?,qq=?,email=? where id=?";
+        template.update(sql,user.getName(),user.getGender(),user.getAge(),user.getAddress(),user.getQq(),user.getEmail(),user.getId());
+    }
 }
