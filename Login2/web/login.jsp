@@ -41,8 +41,8 @@
 <%--
 给浏览器用，所以要加虚拟目录
 --%>
-<form action="/bbb/LoginServlet">
-
+<form action="${pageContext.request.contextPath}/LoginServlet">
+<%--<form action="/bbb/LoginServlet">--%>
     <table>
         <tr>
             <td>用户名</td>
