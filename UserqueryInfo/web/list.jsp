@@ -127,7 +127,7 @@
             </tr>
 
             <%--通过el表达式来获取servlet传给它的集合--%>
-            <c:forEach items="${users}" var="user" varStatus="s">
+            <c:forEach items="${pb.list}" var="user" varStatus="s">
                 <tr>
                     <th><input type="checkbox" name="uid" value="${user.id}"></th>
                     <td>${s.count}</td>
@@ -151,23 +151,52 @@
     <div>
         <nav aria-label="Page navigation">
             <ul class="pagination">
-                <li>
-                    <a href="#" aria-label="Previous">
+                <%--在第一页再点击上一页设置禁用状态，但还是可以点击会报错（在后台UserServiceImpl代码写控制<0就返回1就行）--%>
+                <c:if test="${pb.currentPage ==1}">
+                    <li class="disabled">
+                </c:if>
+
+                <c:if test="${pb.currentPage !=1}">
+                    <li>
+                </c:if>
+
+                    <%--返回上一页（点击后，当前页码-1就行），这里</li>和上面c:if其中一个匹配--%>
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage-1}&rows=5" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
-                <li><a href="#">1</a></li>
-                <li><a href="#">2</a></li>
-                <li><a href="#">3</a></li>
-                <li><a href="#">4</a></li>
-                <li><a href="#">5</a></li>
-                <li>
-                    <a href="#" aria-label="Next">
+
+                <%--中间的数字,currentPage=${i}&rows=5(当前页码写死了)就这样发送给findUserByPageServlet获取的--%>
+                <c:forEach begin="1" end="${pb.totalPage}" var="i" step="1">
+                    <%--用c:if来搬bootstrap来弄个激活状态--%>
+                    <c:if test="${pb.currentPage==i}">
+                        <li class="active"><a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&rows=5">${i}</a></li>
+                    </c:if>
+
+                    <c:if test="${pb.currentPage!=i}">
+                        <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&rows=5">${i}</a></li>
+                    </c:if>
+                </c:forEach>
+
+
+                <%--在最后页再点击下一页设置禁用状态，但还是可以点击会报错（在后台UserServiceImpl代码写控制）--%>
+                <c:if test="${pb.currentPage ==pb.totalPage}">
+                    <li class="disabled">
+                </c:if>
+
+                <c:if test="${pb.currentPage !=pb.totalPage}">
+                    <li>
+                </c:if>
+
+                    <%--下一页，和上一页差不多的配置--%>
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage+1}&rows=5" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
+
+
                 <span style="font-size: 25px;margin-left: 5px">
-                    共16条记录，共4页
+                    共${pb.totalCount}条记录，共${pb.totalPage}页
                 </span>
             </ul>
         </nav>

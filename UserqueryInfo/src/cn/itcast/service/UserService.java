@@ -6,6 +6,7 @@ package cn.itcast.service;
  * @date 2020/11/28 10:14
  */
 
+import cn.itcast.domain.PageBean;
 import cn.itcast.domain.User;
 
 import java.util.List;
@@ -48,4 +49,13 @@ public interface UserService {
 
     //删除选中
     void delSelectedUser(String[] ids);
+
+    /**
+     * 分页条件查询
+     * @param currentPage
+     * @param rows
+     * @param
+     * @return
+     */
+    PageBean<User> findUserByPage(String currentPage, String rows);
 }

@@ -30,4 +30,20 @@ public interface UserDao {
     //修改一行时，提交时用
     void update(User user);
 
+    /**
+     * 查询总记录数，分页时用
+     * @return
+     * @param
+     */
+    int findTotalCount();
+
+
+    /**
+     * 分页查询每页记录的list数据
+     * @param start
+     * @param rows
+     * @param
+     * @return
+     */
+    List<User> findByPage(int start, int rows);
 }

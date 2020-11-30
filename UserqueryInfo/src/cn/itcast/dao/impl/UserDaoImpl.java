@@ -83,4 +83,18 @@ public class UserDaoImpl implements UserDao{
         String sql="update user set name=?,gender=?,age=?,address=?,qq=?,email=? where id=?";
         template.update(sql,user.getName(),user.getGender(),user.getAge(),user.getAddress(),user.getQq(),user.getEmail(),user.getId());
     }
+
+    @Override
+    public int findTotalCount() {
+        //查询数据库总的记录条数，分页时要用
+        String sql="select count(*) from user";
+        return template.queryForObject(sql,Integer.class);
+    }
+
+    @Override
+    public List<User> findByPage(int start, int rows) {
+        //分页查询时，返回list集合到页面展示
+        String sql="select * from user limit ?,?";
+        return template.query(sql,new BeanPropertyRowMapper<User>(User.class),start,rows);
+    }
 }

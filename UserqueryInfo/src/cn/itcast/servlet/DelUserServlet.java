@@ -25,10 +25,12 @@ public class DelUserServlet extends HttpServlet {
         service.deleteUser(id);
 
         //3.跳转到查询所有Servlet，重定向
-        response.sendRedirect(request.getContextPath()+"/userListServlet");
+        //response.sendRedirect(request.getContextPath()+"/userListServlet");
+        response.sendRedirect(request.getContextPath()+"/findUserByPageServlet");
+
 
         //这里因为没设置上面键值，所以用转发也行的
-        //request.getRequestDispatcher(request.getContextPath()+"/userListServlet").forward(request,response);
+        //request.getRequestDispatcher(request.getContextPath()+"/findUserByPageServlet").forward(request,response);
     }
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
