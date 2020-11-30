@@ -20,7 +20,7 @@ public interface UserDao {
     //添加联系人
     void add(User user);
 
-    //删除一行
+    //根据id删除一行
     void delete(int id);
 
     //修改一行时，回显要用的

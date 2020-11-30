@@ -66,6 +66,25 @@ public class UserServiceImpl implements UserService{
         dao.update(user);
     }
 
+    @Override
+    public void delSelectedUser(String[] ids) {
+        /**
+         * @description: 删除选中
+         * @param: * @param: ids
+         * @return: void
+         * @author QLBF
+         * @date: 2020/11/30 8:49
+         */
+        //防止空指针异常
+        if (ids!=null&&ids.length>0){
+            //遍历数组
+            for (String id : ids) {
+                //调用dao的删除方法
+                dao.delete(Integer.parseInt(id));
+            }
+        }
+    }
+
     /*public static void main(String[] args) {
         User u=new User();
         u.setUsername("zhangsan1");

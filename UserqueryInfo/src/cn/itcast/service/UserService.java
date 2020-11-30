@@ -45,4 +45,7 @@ public interface UserService {
 
     //修改一行时，提交时用
     void updateUser(User user);
+
+    //删除选中
+    void delSelectedUser(String[] ids);
 }
