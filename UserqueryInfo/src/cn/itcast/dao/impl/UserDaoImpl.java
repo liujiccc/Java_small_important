@@ -6,7 +6,10 @@ import cn.itcast.util.JDBCUtils;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 /**
  * @author QLBF
@@ -85,16 +88,82 @@ public class UserDaoImpl implements UserDao{
     }
 
     @Override
-    public int findTotalCount() {
-        //查询数据库总的记录条数，分页时要用
-        String sql="select count(*) from user";
-        return template.queryForObject(sql,Integer.class);
+    public int findTotalCount(Map<String, String[]> condition) {
+
+        //1.定义模板初始化sql,查询数据库总的记录条数，分页时要用+复杂查询也要用，所以得用动态sql
+        String sql = "select count(*) from user where 1 = 1 ";
+        StringBuilder sb = new StringBuilder(sql);
+        System.out.println("StringbUILDER中的sb :"+sb);//select count(*) from user where 1 = 1
+        //2.遍历map
+        Set<String> keySet = condition.keySet();
+        //定义参数的集合,不然等下value没发取
+        List<Object> params = new ArrayList<Object>();
+        for (String key : keySet) {
+            //排除分页条件参数，因为findUserByPageServlet通过getParamerter也会获取currentPage和rows，这里写sql，所以要疲敝掉
+            if("currentPage".equals(key) || "rows".equals(key)){
+                continue;
+            }
+
+            //获取value
+            String value = condition.get(key)[0];//以为getparamater返回的是string[],所以每个输入框返回[0]
+            //System.out.println("value数组："+condition.get(key));//value数组：[Ljava.lang.String;@303b36f1
+                                                        /*            value数组：[Ljava.lang.String;@3efcde86
+                                                                    value数组：[Ljava.lang.String;@3ac35d81*/
+            //判断value是否有值
+            if(value != null && !"".equals(value)){
+                //有值,动态地添加到sql中，记得加个空格，否则很容易sql连在一起就不好
+                sb.append(" and "+key+" like ? ");
+                params.add("%"+value+"%");//？条件的值
+            }
+        }
+        //System.out.println("sb的tostring："+sb.toString());//sb的tostring：select count(*) from user where 1 = 1  and name like ?  and address like ?
+        System.out.println("params的值:"+params);//params的值:[%李%, %陕西%]
+        System.out.println("params的toarray:"+params.toArray());//params的toarray:[Ljava.lang.Object;@7fc1d4bd
+
+        //因为queryForObject后面要的是数组，所以这里要params.toArray()转为数组
+        return template.queryForObject(sb.toString(),Integer.class,params.toArray());
+
+
     }
 
     @Override
-    public List<User> findByPage(int start, int rows) {
-        //分页查询时，返回list集合到页面展示
-        String sql="select * from user limit ?,?";
-        return template.query(sql,new BeanPropertyRowMapper<User>(User.class),start,rows);
+    public List<User> findByPage(int start, int rows, Map<String, String[]> condition) {
+
+        String sql = "select * from user  where 1 = 1 ";
+
+        StringBuilder sb = new StringBuilder(sql);
+        //2.遍历map
+        Set<String> keySet = condition.keySet();
+        //定义参数的集合
+        List<Object> params = new ArrayList<Object>();
+        for (String key : keySet) {
+
+            //排除分页条件参数，因为findUserByPageServlet通过getParamerter也会获取currentPage和rows，这里写sql，所以要疲敝掉
+            if("currentPage".equals(key) || "rows".equals(key)){
+                continue;
+            }
+
+            //获取value
+            String value = condition.get(key)[0];
+            //判断value是否有值
+            if(value != null && !"".equals(value)){
+                //有值 动态地添加到sql中，记得加个空格，否则很容易sql连在一起就不好
+                sb.append(" and "+key+" like ? ");
+                params.add("%"+value+"%");//？条件的值
+            }
+        }
+
+        //添加分页查询
+        sb.append(" limit ?,? ");
+        //添加分页查询参数值
+        params.add(start);
+        params.add(rows);
+        System.out.println("下面的sql没转前:"+sql);//select * from user  where 1 = 1
+        sql = sb.toString();//Stringbuild转为string要加tostring的
+        //System.out.println("下面的sql:"+sql);//select * from user  where 1 = 1  limit ?,?
+        //System.out.println("下面的参数:"+params);//[%李%, %陕西%, 0, 5]
+
+
+        return template.query(sql,new BeanPropertyRowMapper<User>(User.class),params.toArray());
     }
 }

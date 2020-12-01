@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Map;
 
 /**
  * @author QLBF
@@ -32,18 +33,25 @@ public class FindUserByPageServlet extends HttpServlet {
         if (rows==null || "".equals(rows)){
             rows="5";
         }
+
+        //获取复杂条件查询的参数
+        Map<String, String[]> condition = request.getParameterMap();
+
+
         //2.调用service查询
         UserService service=new UserServiceImpl();
-        PageBean<User> pb=service.findUserByPage(currentPage,rows);
+        PageBean<User> pb=service.findUserByPage(currentPage,rows,condition);
 
-        //为最后一页点下一页出现异常做准备
-        if (Integer.parseInt(currentPage)>=pb.getTotalPage()+1){
-            currentPage= String.valueOf(pb.getTotalPage());
-        }
+//        //为最后一页点下一页出现异常做准备
+//        if (Integer.parseInt(currentPage)>=pb.getTotalPage()+1){
+//            currentPage= String.valueOf(pb.getTotalPage());
+//        }
 
-        //System.out.println(pb);
-        //3.将PageBean存入request
+        System.out.println("pb:"+pb);
+        //3.将PageBean存入request，也将condition存入，才可以复杂查询后还回显这些数据再那个搜索框中
         request.setAttribute("pb",pb);
+        request.setAttribute("condition",condition);
+
 
         //4.转发到list.jsp
         request.getRequestDispatcher("/list.jsp").forward(request,response);

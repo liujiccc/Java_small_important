@@ -7,6 +7,7 @@ import cn.itcast.domain.User;
 import cn.itcast.service.UserService;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @author QLBF
@@ -89,7 +90,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public PageBean<User> findUserByPage(String _currentPage, String _rows) {
+    public PageBean<User> findUserByPage(String _currentPage, String _rows, Map<String, String[]> condition) {
         //分页查询，在这里封装PageBean对象
         //把string转为int
         int currentPage=Integer.parseInt(_currentPage);
@@ -108,13 +109,13 @@ public class UserServiceImpl implements UserService{
         pb.setRows(rows);
 
         //3.调用dao查询总记录数
-        int totalCount=dao.findTotalCount();
+        int totalCount=dao.findTotalCount(condition);
         pb.setTotalCount(totalCount);
 
-        //4.调用dao查询的List集合
+        //4.调用dao查询的List集合+分页
         //计算开始的记录索引
         int start=(currentPage-1)*rows;
-        List<User> list=dao.findByPage(start,rows);
+        List<User> list=dao.findByPage(start,rows,condition);
         pb.setList(list);
 
 

@@ -84,18 +84,19 @@
     <h3 style="text-align: center">用户信息列表</h3>
     <div style="float: left">
         <%--把bootstrap的内联表单加进来--%>
-        <form class="form-inline">
+        <form class="form-inline" action="${pageContext.request.contextPath}/findUserByPageServlet" method="post">
             <div class="form-group">
                 <label for="exampleInputName2">姓名：</label>
-                <input type="text" class="form-control" id="exampleInputName2" placeholder="Jane Doe">
+                <%--设置value是为了复杂查询时点了另外一页可以回显数据--%>
+                <input type="text" class="form-control" name="name" value="${condition.name[0]}" id="exampleInputName2" placeholder="Jane Doe">
             </div>
             <div class="form-group">
                 <label for="exampleInputName3">籍贯：</label>
-                <input type="text" class="form-control" id="exampleInputName3" placeholder="Jane Doe">
+                <input type="text" class="form-control" name="address" value="${condition.address[0]}" id="exampleInputName3" placeholder="Jane Doe">
             </div>
             <div class="form-group">
                 <label for="exampleInputEmail2">邮箱：</label>
-                <input type="email" class="form-control" id="exampleInputEmail2" placeholder="jane.doe@example.com">
+                <input type="text" class="form-control" name="email" value="${condition.email[0]}" id="exampleInputEmail2" placeholder="jane.doe@example.com">
             </div>
             <button type="submit" class="btn btn-default">查询</button>
         </form>
@@ -161,7 +162,7 @@
                 </c:if>
 
                     <%--返回上一页（点击后，当前页码-1就行），这里</li>和上面c:if其中一个匹配--%>
-                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage-1}&rows=5" aria-label="Previous">
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage-1}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}" aria-label="Previous">
                         <span aria-hidden="true">&laquo;</span>
                     </a>
                 </li>
@@ -170,11 +171,11 @@
                 <c:forEach begin="1" end="${pb.totalPage}" var="i" step="1">
                     <%--用c:if来搬bootstrap来弄个激活状态--%>
                     <c:if test="${pb.currentPage==i}">
-                        <li class="active"><a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&rows=5">${i}</a></li>
+                        <li class="active"><a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}">${i}</a></li>
                     </c:if>
 
                     <c:if test="${pb.currentPage!=i}">
-                        <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&rows=5">${i}</a></li>
+                        <li><a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${i}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}">${i}</a></li>
                     </c:if>
                 </c:forEach>
 
@@ -189,7 +190,7 @@
                 </c:if>
 
                     <%--下一页，和上一页差不多的配置--%>
-                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage+1}&rows=5" aria-label="Next">
+                    <a href="${pageContext.request.contextPath}/findUserByPageServlet?currentPage=${pb.currentPage+1}&rows=5&name=${condition.name[0]}&address=${condition.address[0]}&email=${condition.email[0]}" aria-label="Next">
                         <span aria-hidden="true">&raquo;</span>
                     </a>
                 </li>
